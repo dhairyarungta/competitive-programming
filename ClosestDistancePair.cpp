@@ -17,10 +17,8 @@ long long  calDistance (const pair<int, int> a , const pair <int, int>b ){
     long long  ans =  ((long)(a.first-b.first)*(long)(a.first-b.first))+((long)(a.second-b.second)*(long)(a.second-b.second));
         //  cout <<ans<<"\n";
      return ans ;
-`
+
 }
-
-
 
 long long  bruteForceSol(pair<int,int> * coordinates, int n){
     long long  mindist = INT_MAX ;

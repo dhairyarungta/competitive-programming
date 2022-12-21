@@ -1,6 +1,89 @@
 //Time Complexity for this solution 
-//is O(n log_n)
+//is O(n*logn)
 
 #include <bits/stdc++.h>
 using namespace std;
+#include <bits/stdc++.h
 
+bool compareX (const pair<int, int> &a , const pair<int, int> &b){
+    return (a.first<b.first);
+}
+
+bool compareY(const pair <int, int> &a , const pair< int, int> & b){
+    return (b.first<b.second);
+}
+
+long calDistance(const pair<int, int>&a , const pair<int, int> &b){
+    long dist1 =  (long)(a.first-b.first);
+    long dist2 = (long)(a.second-b.second);
+
+    return (dist1*dist1)+(dist2*dist2);
+}
+
+long bruteforceSol(pair<int,int> * coordinates, int n){
+    long mindist = INT_MAX;
+    for (int i =0;i<n;i++){
+        for (int j =i+1;j<n;j++){
+            if(calDistance(coordinates[i],coordinates[j])<mindist){
+                mindist= calDistance(coordinates[i],coordinates[j]);
+            }
+        }
+    }
+    return mindist;
+}
+
+long stripClosest(pair<int,int>* strip , int size, long dist){
+    long minDist = dist;
+    for (int i =0;i<size;i++){
+        for (int j =i+1; j<size && ((strip[j].second -strip[i].second)<minDist);j++){
+            if (calDistance(strip[i],strip[j])<minDist){
+                minDist = calDistance(strip[i],strip[j]);
+            }
+        }
+    }
+    return minDist;
+}
+
+long recursvieClosestPair(pair<int, int> * xSorted, pair<int,int>*ySorted, int n){
+    if (n<=3){
+        return bruteforceSol(xSorted,n);
+    }
+
+    int mid = (n-1)>>1;
+    pair<int,int> midPoint = xSorted[mid];
+    pair<int,int>* yleftSorted = new pair<int,int>[mid+1];
+    pair<int,int>* yrightSorted = new pair<int,int>[n-mid-1];
+    int li =0, ri = 0;
+    for (int i=0;i<n;i++){
+        if((ySorted[i].first<midPoint.first || (ySorted[i].first==midPoint.first && ySorted[i].second<midPoint.second)&& li<=mid))
+            yleftSorted[li++]=ySorted[i];
+        else 
+            yrightSorted[ri++]= ySorted[i];
+    }
+
+    long ans1 = recursvieClosestPair(xSorted,yleftSorted,mid+1);
+    long ans2 = recursvieClosestPair(xSorted+mid+1,yrightSorted,n-mid-1);
+
+    long overallAns = min(ans1,ans2);
+
+    pair<int,int> *strip= new pair<int,int>[n];
+    int j =0;
+    for (int i =0;i<n;i++){
+        if(abs(ySorted[i].first-midPoint.first)<overallAns){
+            strip[j++]=ySorted[i];
+
+        }
+    }
+    // j now contains the size of the strip array
+    return stripClosest(strip,j,overallAns);
+}
+
+long closestPair(pair<int, int>* coordinates, int n)
+{
+    //Write your code here
+    sort(coordinates,coordinates+n);
+    pair<int,int>* ySorted = new pair<int, int>[n];
+    for (int i =0;i<n;i++) ySorted[i]= coordinates[i];
+    sort(ySorted,ySorted+n, compareY);
+    return recursvieClosestPair(coordinates, ySorted, n);
+}
