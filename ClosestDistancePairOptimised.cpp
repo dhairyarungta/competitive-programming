@@ -95,4 +95,4 @@ long closestPair(pair<int, int>* coordinates, int n)
     sort(ySorted,ySorted+n,compareY);
     return recursvieClosestPair(coordinates, ySorted, n);
     // return 0;
-}
+}`

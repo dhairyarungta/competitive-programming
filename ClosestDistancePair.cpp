@@ -88,7 +88,7 @@ long long  recursiveUtilFunction(pair<int,int> * coordinates, int n){
 long long  closestPair(pair<int, int>* coordinates, int n)
 { 
     //Write your code here
-    sort (coordinates, coordinates+n);
+    sort (coordinates, coordinates+n,comapreX);
     return  recursiveUtilFunction(coordinates, n);
     
 }
