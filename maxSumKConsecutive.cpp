@@ -16,7 +16,24 @@ void precal(){
 }
 
 void solve (){
+    int n , k;
+    cin>> n>>k;
+    vector<int> a(n);
+    fr(i,0,n)cin>>a[i];
 
+    ll maxVal = INT64_MIN;
+    ll curVal =0;
+    for (int i =0;i<n;i++){
+        if(i<k) curVal+=a[i];
+
+
+        if (i==k-1)maxVal = max(curVal,maxVal);
+        else if(i>=k) {
+            curVal = curVal+a[i]-a[i-k];
+            maxVal = max(maxVal,curVal);
+        }
+    }
+    cout<< maxVal<<"\n";
 }
 
 int main(){
