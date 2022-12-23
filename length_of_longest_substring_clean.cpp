@@ -8,10 +8,6 @@ int lengthOfLongestSubstring(string s) {
     int numDistinct = 0;
     for(e=0;e<n;e++){
         int curLen = e-st+1;
-        // if (numDistinct<=2){
-        //     maxLen = max(maxLen,curLen);
-        // }
-
         if(a[s[e]-'a']!=0){
           a[s[e] - 'a']++;
           maxLen = max(curLen,maxLen);   
