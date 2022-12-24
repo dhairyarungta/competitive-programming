@@ -19,10 +19,9 @@ int lengthOfLongestSubstring(string s) {
                 f[s[start]-'a']--;
                 if(f[s[start]-'a']==0) total--;
                 
-                start++;
+                start++;                                                                            
             }
         }
     }
-
     cout << maxlen<<"\n";
 }
