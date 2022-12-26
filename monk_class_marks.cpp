@@ -1,36 +1,29 @@
 #include <iostream>
 #include <bits/stdc++.h>
-#define ll long long
-#define pb push_back
-#define fast_io ios_base::sync_with_stdio(false);cin.tie(0);cout.tie(0);
-#define fr(i,a,b) for (int i =a;i<b;i++)
-#define loop(x,n) for (int x = 0;x<n;++x)
-#define mod 1000000007
-#define inf (1LL<<60)
-#define all(x) (x).begin(), (x).end()
 
 using namespace std;
 
-void precal(){
-
+bool compareFun(pair<string,int>const &a, pair<string,int> const &b){
+	if(a.second==b.second){
+		if(a.first.compare(0,b.first.size(),b.first)==0 || b.first.compare(0,a.first.size(),a.first)==0){
+			return a.first.size()<b.first.size();
+		}
+		else return a.first<b.first;
+	}
+	else return a.second>b.second;
 }
 
-void solve (){
+int main() {
+	int num;
+	cin >> num;    //Reading input from STDIN
+	vector<pair<string,int>>a(num);
+	for (int i =0;i<num;i++){
+		cin>>a[i].first>>a[i].second;
+	} 
+	sort(a.begin(),a.end(),compareFun);
 
-}
-
-int main(){
-    fast_io;
-    cout<<fixed;
-    cout<< setprecision(10);
-    precal();
-    int t =1;
-    cin>> t ;
-    for (int i =1;i<=t;i++){
-        // cout<< "Case #"<<i<<": ";
-        solve();
-    }
-
-    return 0;
+	for (int i =0;i<num;i++){
+		cout<<a[i].first<<" "<<a[i].second<<"\n";
+	} 
 
 }
