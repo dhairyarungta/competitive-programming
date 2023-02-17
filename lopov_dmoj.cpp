@@ -44,7 +44,7 @@ void solve (){
 
     sort(vec.begin(),vec.end(),comp);
     // for(auto [i,j]:vec)cout<<i<<" ";
-    int maxval = 0;
+    ll maxval = 0;
     for (int i =0;i<n;i++){
         auto iter = a.lower_bound(vec[i].second);
         if(iter!=a.end()){
