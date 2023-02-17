@@ -16,6 +16,11 @@ void precal(){
 }
 
 bool comp(const pair<int,int> & a, const pair <int, int> &b){
+    
+    if(a.first==b.first){
+        return a.second<b.second;
+    }
+    else
     return a.first>b.first;
 }
 
@@ -30,11 +35,6 @@ void solve (){
     }
     //first element depicts value
     //vector pair (value, mass);
-    
-    // vector<int>a(k);
-    // for (auto &i:a)cin>>i;
-    // sort(a.begin(),a.end());
-
     multiset<int> a;
     for (int i =0;i<k;i++){
         int temp ;
