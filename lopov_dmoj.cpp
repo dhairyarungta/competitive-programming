@@ -15,7 +15,44 @@ void precal(){
 
 }
 
+bool comp(const pair<int,int> & a, const pair <int, int> &b){
+    return a.first>b.first;
+}
+
+
 void solve (){
+    int n, k;
+    cin>>n>>k;
+    vector<pair<int,int>>vec(n);
+    for (auto &[i,j]:vec){
+        cin>>j;
+        cin>>i;
+    }
+    //first element depicts value
+    //vector pair (value, mass);
+    
+    // vector<int>a(k);
+    // for (auto &i:a)cin>>i;
+    // sort(a.begin(),a.end());
+
+    multiset<int> a;
+    for (int i =0;i<k;i++){
+        int temp ;
+        cin>>temp;
+        a.insert(temp);
+    }
+
+    sort(vec.begin(),vec.end(),comp);
+    // for(auto [i,j]:vec)cout<<i<<" ";
+    int maxval = 0;
+    for (int i =0;i<n;i++){
+        auto iter = a.lower_bound(vec[i].second);
+        if(iter!=a.end()){
+            maxval+=vec[i].first;
+            a.erase(iter);
+        }
+    }
+    cout<<maxval<<"\n";
 
 }
 
