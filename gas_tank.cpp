@@ -1,3 +1,4 @@
+//Similar logic to Kadane's algorithm
 // O(n) Time Complexity 
 #include <bits/stdc++.h>
     int minimumStartingIndex(vector<int> &gas, vector<int> &cost, int n) {
