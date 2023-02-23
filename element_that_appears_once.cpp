@@ -1,3 +1,24 @@
+//Cleaner Solution
+int elementThatAppearsOnce(vector<int> arr) {
+	// Write your code here.
+	int bits[32]={0};
+	int n = arr.size();
+	int  val = 0;
+	for (int i =0;i<31;i++){
+		for (int j =0 ;j<n;j++){
+			if((arr[j]>>i)&1){
+				bits[i]++;
+			}
+		}
+	val |= (bits[i]%3)*(1<<i);
+}
+
+return val;
+}
+
+
+
+
 int elementThatAppearsOnce(vector<int> arr) {
 	// Write your code here.
 	int n =arr.size();
